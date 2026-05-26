@@ -1,0 +1,943 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Skylo — Brand Vision: Consumer Connectivity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  /* ----- Skylo brand tokens (from Brand Guidelines V2) ----- */
+  :root{
+    --rich-black:#080E1C;
+    --navy:#101D35;
+    --deep-ocean:#173B42;
+    --teal:#18889A;
+    --e-cyan:#19F3FF;
+    --neon-green:#00FF00;
+    --skylo-green:#00C11E;
+    --warm-gray-3:#63605F;
+    --cool-gray-3:#404347;
+    --white:#FFFFFF;
+    --grad: linear-gradient(120deg, var(--e-cyan), var(--neon-green));
+    --grad-dark: linear-gradient(120deg, #20C8D2, var(--skylo-green));
+  }
+
+  *{box-sizing:border-box;}
+  html, body{margin:0;padding:0;background:var(--rich-black);color:var(--white);font-family:'Roboto',system-ui,sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;}
+  body{overflow-x:hidden;}
+  img{display:block;max-width:100%;}
+  a{color:inherit;}
+
+  /* ----- Layout helpers ----- */
+  .wrap{max-width:1280px;margin:0 auto;padding:0 48px;}
+  .eyebrow{font-family:'Roboto';font-weight:700;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--e-cyan);}
+  .display{font-family:'Roboto';font-weight:400;line-height:1.02;letter-spacing:-.02em;}
+  .grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+
+  /* ----- Top nav strip ----- */
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:22px 48px;background:linear-gradient(180deg,rgba(8,14,28,.85),rgba(8,14,28,0));backdrop-filter:blur(6px);}
+  .logo-lockup{display:flex;align-items:center;}
+  .logo-img{height:30px;width:auto;display:block;}
+  .micrologo-img{height:22px;width:auto;display:block;}
+  .phone-logo-img{height:18px;width:auto;display:block;}
+  .keyart-logo-img{height:64px;width:auto;display:block;}
+  .nav-meta{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.55);font-weight:400;}
+
+  /* ----- HERO ----- */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;}
+  .hero .bg{position:absolute;inset:0;background-image:url('assets/hero_climber.jpg');background-size:cover;background-position:center 25%;}
+  .hero .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,14,28,.35) 0%,rgba(8,14,28,.55) 40%,rgba(8,14,28,.92) 100%);}
+  .hero-content{position:relative;z-index:2;padding:160px 48px 120px;max-width:1280px;margin:0 auto;width:100%;}
+  .hero h1{margin:24px 0 28px;font-size:clamp(56px,9vw,156px);}
+  .hero h1 .line2{display:block;}
+  .hero p.deck{max-width:560px;font-size:18px;line-height:1.55;color:rgba(255,255,255,.78);font-weight:300;}
+  .scroll-cue{position:absolute;left:50%;bottom:40px;transform:translateX(-50%);font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:rgba(255,255,255,.5);}
+  .scroll-cue::after{content:"";display:block;width:1px;height:48px;background:linear-gradient(180deg,rgba(255,255,255,.5),transparent);margin:12px auto 0;}
+
+  /* ----- Section ----- */
+  section{padding:280px 0;position:relative;}
+  .section-head{display:flex;align-items:baseline;justify-content:space-between;gap:48px;margin-bottom:144px;padding-top:60px;}
+  .section-head h2{font-family:'Roboto';font-weight:400;font-size:clamp(36px,5vw,72px);line-height:1.05;letter-spacing:-.02em;margin:0;max-width:780px;}
+  .section-head .num{font-family:'Quicksand';font-weight:500;font-size:13px;letter-spacing:.32em;color:var(--e-cyan);white-space:nowrap;padding-top:14px;}
+  .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);margin:0;}
+
+  /* ----- Premise section (today/tomorrow) ----- */
+  .premise{display:grid;grid-template-columns:1fr 1fr;gap:64px;padding-top:24px;}
+  .premise .col{padding:48px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg,rgba(255,255,255,.02),transparent);border-radius:4px;}
+  .premise .label{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:24px;}
+  .premise h3{font-family:'Roboto';font-weight:500;font-size:32px;margin:0 0 16px;line-height:1.2;}
+  .premise p{color:rgba(255,255,255,.7);line-height:1.6;font-size:15px;margin:0;}
+  .premise .col.future{border-color:rgba(0,255,0,.25);background:linear-gradient(180deg,rgba(0,193,30,.04),transparent);}
+  .premise .col.future h3{font-weight:600;}
+
+  /* ----- Photo mosaic ----- */
+  .mosaic{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;}
+  .tile{position:relative;overflow:hidden;background:#0c1320;}
+  .tile img{width:100%;height:100%;object-fit:cover;transition:transform 1s ease;}
+  .tile:hover img{transform:scale(1.04);}
+  .tile .caption{position:absolute;left:18px;bottom:14px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.85);font-weight:500;text-shadow:0 1px 4px rgba(0,0,0,.6);}
+  .tile.t-a{grid-column:span 7;aspect-ratio:16/10;}
+  .tile.t-b{grid-column:span 5;aspect-ratio:4/5;}
+  .tile.t-c{grid-column:span 4;aspect-ratio:1/1;}
+  .tile.t-d{grid-column:span 4;aspect-ratio:1/1;}
+  .tile.t-e{grid-column:span 4;aspect-ratio:1/1;}
+  .tile.t-f{grid-column:span 6;aspect-ratio:3/2;}
+  .tile.t-g{grid-column:span 6;aspect-ratio:3/2;}
+  .tile.t-h{grid-column:span 4;aspect-ratio:4/5;}
+  .tile.t-i{grid-column:span 8;aspect-ratio:16/10;}
+  .tile.t-j{grid-column:span 12;aspect-ratio:21/8;}
+
+  /* ----- Vision line in context ----- */
+  .context{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
+  .context .item{display:flex;flex-direction:column;gap:18px;}
+  .context .item .frame{position:relative;overflow:hidden;background:#000;}
+  .context .item .label{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.55);}
+
+  /* OOH billboard mock */
+  .billboard{aspect-ratio:16/9;background:#000 center/cover;display:flex;align-items:center;justify-content:center;padding:48px;border:1px solid rgba(255,255,255,.08);}
+  .billboard.b1{background-image:linear-gradient(180deg,rgba(8,14,28,.45),rgba(8,14,28,.85)),url('assets/mountain_lake.jpg');}
+  .billboard.b2{background-image:linear-gradient(180deg,rgba(8,14,28,.35),rgba(8,14,28,.85)),url('assets/misty_mountain.jpg');}
+  .billboard .copy{text-align:center;}
+  .billboard .copy h4{font-family:'Roboto';font-weight:400;font-size:clamp(28px,3.5vw,52px);line-height:1.05;letter-spacing:-.01em;margin:0 0 20px;color:#fff;}
+  .billboard .copy h4 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:500;}
+  .billboard .copy .micrologo{display:inline-flex;align-items:center;gap:8px;}
+  .billboard .copy .micrologo .l-text{font-family:'Quicksand';font-weight:600;font-size:18px;}
+
+  /* ----- Device-in-scene composites ----- */
+  .context .item .frame.scene{aspect-ratio:4/3;background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;border-radius:4px;background-color:#0c1320;}
+  .context .item .frame.scene::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.10) 0%,rgba(0,0,0,.45) 100%);pointer-events:none;}
+  /* legacy scene classes removed — current scenes use s-drive, s-pickup, s-ops below */
+
+  /* phone-in-scene */
+  .device-phone{position:relative;z-index:2;width:28%;min-width:140px;aspect-ratio:9/19.5;border-radius:26px;border:6px solid #0a0a0a;background:#000;overflow:hidden;transform:rotate(-3deg);box-shadow:0 30px 80px rgba(0,0,0,.55),0 4px 18px rgba(0,0,0,.4);}
+  .device-phone.straight{transform:none;}
+  .device-phone .pscreen{position:absolute;inset:0;display:flex;flex-direction:column;padding:14px 12px;background:linear-gradient(180deg,#080E1C 0%,#101D35 60%,#173B42 100%);color:#fff;}
+  .device-phone .pscreen.splash{justify-content:space-between;align-items:center;text-align:center;padding:22px 14px 16px;}
+  .device-phone .pscreen .topbit{font-size:7px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.6);}
+  .device-phone .pscreen .midbit{font-family:'Roboto';font-weight:400;font-size:13px;line-height:1.18;color:#fff;}
+  .device-phone .pscreen .midbit em{font-style:normal;font-weight:500;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .device-phone .pscreen .bottombit{display:flex;align-items:center;justify-content:center;gap:4px;}
+  .device-phone .pscreen .bottombit img{height:11px;width:auto;}
+  /* phone app layout */
+  .device-phone .pscreen.app{padding:18px 10px 12px;justify-content:flex-start;}
+  .device-phone .pscreen.app .status{display:flex;justify-content:space-between;font-size:6px;letter-spacing:.18em;color:rgba(255,255,255,.6);text-transform:uppercase;margin-bottom:10px;}
+  .device-phone .pscreen.app .greet{font-size:13px;font-weight:500;line-height:1.15;margin-bottom:3px;}
+  .device-phone .pscreen.app .sub{font-size:8px;color:rgba(255,255,255,.6);margin-bottom:10px;line-height:1.3;}
+  .device-phone .pscreen.app .card{padding:7px 8px;border:1px solid rgba(255,255,255,.12);border-radius:7px;margin-bottom:5px;display:flex;justify-content:space-between;align-items:center;font-size:8px;}
+  .device-phone .pscreen.app .card .l{letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.55);font-size:6px;}
+  .device-phone .pscreen.app .card .v{font-family:'Quicksand';font-weight:600;font-size:9px;}
+  .device-phone .pscreen.app .pill{margin-top:auto;background:var(--grad);color:#0a1422;font-weight:600;font-size:7px;text-align:center;padding:7px 0;border-radius:18px;letter-spacing:.16em;text-transform:uppercase;}
+  .device-phone .pscreen.app .gdot{display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--neon-green);margin-right:5px;box-shadow:0 0 6px var(--neon-green);}
+
+  /* laptop-in-scene */
+  .device-laptop{position:relative;z-index:2;width:62%;max-width:560px;filter:drop-shadow(0 30px 70px rgba(0,0,0,.55));}
+  .device-laptop .lid{width:100%;aspect-ratio:16/10;background:#0a0a0a;border:5px solid #1a1a1a;border-bottom:0;border-radius:8px 8px 0 0;position:relative;overflow:hidden;}
+  .device-laptop .lscreen{position:absolute;inset:0;background:linear-gradient(180deg,#080E1C 0%,#101D35 70%,#173B42 100%);color:#fff;font-family:'Roboto';padding:18px 22px;display:flex;flex-direction:column;}
+  .device-laptop .lscreen .ltop{display:flex;justify-content:space-between;align-items:center;font-size:9px;color:rgba(255,255,255,.55);letter-spacing:.18em;text-transform:uppercase;}
+  .device-laptop .lscreen .ltop img{height:14px;width:auto;}
+  .device-laptop .lscreen h6{margin:14px 0 6px;font-weight:500;font-size:18px;line-height:1.1;}
+  .device-laptop .lscreen h6 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:500;}
+  .device-laptop .lscreen .lsub{font-size:10px;color:rgba(255,255,255,.65);margin-bottom:14px;}
+  .device-laptop .lscreen .stat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+  .device-laptop .lscreen .stat{padding:8px;border:1px solid rgba(255,255,255,.1);border-radius:6px;}
+  .device-laptop .lscreen .stat .sl{font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:3px;}
+  .device-laptop .lscreen .stat .sv{font-family:'Quicksand';font-weight:600;font-size:13px;}
+  .device-laptop .lscreen .grad-bar{height:3px;border-radius:3px;background:var(--grad);margin-top:auto;width:60%;}
+  .device-laptop .base{height:10px;width:108%;margin-left:-4%;background:linear-gradient(180deg,#2a2a2a,#0a0a0a);border-radius:0 0 10px 10px;position:relative;}
+  .device-laptop .base::after{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:22%;height:3px;border-radius:0 0 4px 4px;background:#000;}
+
+  /* People showcase tiles */
+  .people-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:20px;}
+  .ptile{position:relative;overflow:hidden;background:#0c1320;border-radius:4px;}
+  .ptile img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease;}
+  .ptile:hover img{transform:scale(1.05);}
+  .ptile .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,14,28,0) 35%,rgba(8,14,28,.85) 100%);}
+  .ptile .meta{position:absolute;left:24px;right:24px;bottom:22px;color:#fff;}
+  .ptile .meta .who{font-family:'Roboto';font-weight:500;font-size:22px;line-height:1.1;margin:0 0 6px;}
+  .ptile .meta .what{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--e-cyan);font-weight:500;}
+  .ptile.p-big{grid-column:span 7;aspect-ratio:16/11;}
+  .ptile.p-small{grid-column:span 5;aspect-ratio:4/4.4;}
+  .ptile.p-third{grid-column:span 4;aspect-ratio:4/5;}
+
+  /* Phone splash mock */
+  .phonemock{aspect-ratio:9/16;max-width:280px;margin:0 auto;border:8px solid #1a1a1a;border-radius:36px;overflow:hidden;background:#000;position:relative;}
+  .phonemock .screen{position:absolute;inset:0;background:linear-gradient(180deg,#080E1C 0%,#101D35 60%,#173B42 100%);display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:48px 24px 36px;}
+  .phonemock .top-line{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.6);}
+  .phonemock .mid{text-align:center;}
+  .phonemock .mid h5{font-family:'Roboto';font-weight:400;font-size:22px;line-height:1.15;margin:0 0 8px;color:#fff;}
+  .phonemock .mid h5 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:500;}
+  .phonemock .stars{position:absolute;inset:0;pointer-events:none;}
+  .phonemock .bottom{display:flex;align-items:center;gap:8px;}
+
+  /* App home mock */
+  .appmock{aspect-ratio:9/16;max-width:280px;margin:0 auto;border:8px solid #1a1a1a;border-radius:36px;overflow:hidden;position:relative;background:#0a121f;}
+  .appmock .screen{position:absolute;inset:0;padding:40px 18px 18px;display:flex;flex-direction:column;color:#fff;font-family:'Roboto';}
+  .appmock .status-row{display:flex;justify-content:space-between;font-size:9px;letter-spacing:.18em;color:rgba(255,255,255,.55);text-transform:uppercase;margin-bottom:18px;}
+  .appmock .h1{font-size:22px;font-weight:500;line-height:1.15;margin:0 0 6px;}
+  .appmock .sub{font-size:11px;color:rgba(255,255,255,.55);margin-bottom:16px;}
+  .appmock .pill{margin-top:auto;background:var(--grad);color:#0a1422;font-weight:500;font-size:11px;text-align:center;padding:12px 0;border-radius:30px;letter-spacing:.16em;text-transform:uppercase;}
+  .appmock .signal-card{padding:14px;border:1px solid rgba(255,255,255,.1);border-radius:12px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;}
+  .appmock .signal-card .l{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);}
+  .appmock .signal-card .v{font-family:'Quicksand';font-weight:600;font-size:14px;}
+  .appmock .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--neon-green);margin-right:8px;vertical-align:middle;box-shadow:0 0 8px var(--neon-green);}
+
+  /* Event swag mock */
+  .swag-frame{aspect-ratio:4/5;background:linear-gradient(180deg,#080E1C,#101D35);position:relative;overflow:hidden;border-radius:4px;padding:40px 36px;display:flex;flex-direction:column;justify-content:space-between;}
+  .swag-frame::after{content:"";position:absolute;inset:0;background-image:radial-gradient(ellipse at 50% 110%, rgba(25,243,255,.10), transparent 60%);pointer-events:none;}
+  .swag-frame .swag-header{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-start;}
+  .swag-frame .swag-header .lbl{font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.6);}
+  .swag-frame .swag-header .tagline{font-family:'Roboto';font-weight:500;font-size:16px;color:#fff;line-height:1.25;max-width:55%;text-align:right;}
+  .swag-frame .swag-header .tagline em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:500;}
+  .swag-frame .swag-grid{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;align-items:end;}
+  .swag-item{position:relative;border-radius:6px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);overflow:hidden;display:flex;align-items:center;justify-content:center;}
+  .swag-item .stamp{position:absolute;left:10px;bottom:8px;font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.5);}
+
+  /* Lanyard */
+  .swag-item.lanyard{aspect-ratio:1/2.3;background:linear-gradient(180deg,#0e1a30 0%,#1a2540 100%);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:0;}
+  .swag-item.lanyard .strap{width:22px;height:62%;background:linear-gradient(180deg,var(--e-cyan),var(--neon-green));position:relative;border-radius:2px;writing-mode:vertical-rl;text-orientation:mixed;display:flex;align-items:center;justify-content:space-around;padding:18px 0;color:#0a1422;font-family:'Quicksand';font-weight:700;font-size:9px;letter-spacing:.15em;text-transform:lowercase;}
+  .swag-item.lanyard .strap span{display:inline-block;}
+  .swag-item.lanyard .clip{width:24px;height:8px;background:#888;border-radius:2px;margin-top:6px;box-shadow:inset 0 -1px 0 rgba(0,0,0,.4);}
+  .swag-item.lanyard .badge{width:78%;aspect-ratio:5/7;background:#fff;border-radius:4px;margin-top:6px;padding:10px 8px;display:flex;flex-direction:column;justify-content:space-between;align-items:center;text-align:center;}
+  .swag-item.lanyard .badge .name{font-family:'Roboto';font-weight:500;font-size:11px;color:#101D35;line-height:1.1;}
+  .swag-item.lanyard .badge .role{font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:#63605F;}
+  .swag-item.lanyard .badge img{height:11px;width:auto;filter:invert(1) hue-rotate(180deg) saturate(0) brightness(.25);}
+
+  /* Sticker pack: stack of stickers */
+  .swag-item.stickers{aspect-ratio:1/1.1;background:transparent;border:0;display:block;}
+  .swag-item.stickers .sk{position:absolute;border-radius:10px;background:#fff;padding:12px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.4);}
+  .swag-item.stickers .sk1{width:62%;aspect-ratio:1/1;left:6%;top:8%;transform:rotate(-8deg);background:#0a1422;}
+  .swag-item.stickers .sk1 img{height:32%;width:auto;}
+  .swag-item.stickers .sk2{width:55%;aspect-ratio:1/1;border-radius:50%;right:4%;top:38%;transform:rotate(6deg);background:var(--grad);}
+  .swag-item.stickers .sk2 .qq{font-family:'Quicksand';font-weight:700;font-size:9px;color:#0a1422;letter-spacing:.06em;text-align:center;line-height:1.1;}
+  .swag-item.stickers .sk3{width:60%;aspect-ratio:5/2.2;left:12%;bottom:6%;transform:rotate(-3deg);background:#fff;}
+  .swag-item.stickers .sk3 img{height:60%;width:auto;filter:invert(1) hue-rotate(180deg) saturate(0);}
+
+  /* Tote bag */
+  .swag-item.tote{aspect-ratio:1/1.2;background:#e7e3d4;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:18px 14px 14px;border:1px solid rgba(0,0,0,.06);overflow:visible;}
+  .swag-item.tote::before, .swag-item.tote::after{content:"";position:absolute;top:-14px;width:8px;height:30px;background:#e7e3d4;border:1px solid rgba(0,0,0,.06);border-radius:8px 8px 0 0;}
+  .swag-item.tote::before{left:28%;}
+  .swag-item.tote::after{right:28%;}
+  .swag-item.tote .totemark{display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:12%;}
+  .swag-item.tote .totemark img{height:28px;width:auto;filter:invert(1) hue-rotate(180deg) saturate(0) brightness(.3);}
+  .swag-item.tote .totetag{font-size:7px;letter-spacing:.32em;text-transform:uppercase;color:#404347;margin-top:auto;}
+
+  /* Water bottle */
+  .swag-item.bottle{aspect-ratio:1/2.5;background:transparent;border:0;display:block;}
+  .swag-item.bottle .bbody{position:absolute;left:18%;right:18%;top:8%;bottom:6%;background:linear-gradient(180deg,#1a2540 0%,#0e1a30 80%);border-radius:12px 12px 14px 14px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.05);}
+  .swag-item.bottle .bcap{position:absolute;left:30%;right:30%;top:0;height:10%;background:#2a2a2a;border-radius:4px 4px 0 0;}
+  .swag-item.bottle .blabel{position:absolute;left:24%;right:24%;top:30%;bottom:30%;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
+  .swag-item.bottle .blabel img{height:35%;width:auto;filter:invert(1) hue-rotate(180deg) saturate(0) brightness(.25);}
+
+  /* Cap */
+  .swag-item.cap{aspect-ratio:1.4/1;background:transparent;border:0;display:block;align-items:flex-end;}
+  .swag-item.cap .crown{position:absolute;left:18%;right:18%;top:18%;height:46%;background:linear-gradient(180deg,#101D35,#173B42);border-radius:50% 50% 8% 8%/70% 70% 8% 8%;display:flex;align-items:center;justify-content:center;}
+  .swag-item.cap .crown img{height:46%;width:auto;}
+  .swag-item.cap .brim{position:absolute;left:6%;right:6%;top:58%;height:14%;background:#0a1422;border-radius:50%/100% 100% 0 0;}
+  .swag-item.cap .band{position:absolute;left:18%;right:18%;top:52%;height:6%;background:rgba(255,255,255,.12);}
+
+  /* Packaging mock (legacy, unused) */
+  .packaging{aspect-ratio:4/5;background:linear-gradient(180deg,#080E1C,#101D35);position:relative;overflow:hidden;border-radius:4px;}
+  .packaging::after{content:"";position:absolute;inset:0;background-image:radial-gradient(ellipse at 50% 110%, rgba(25,243,255,.18), transparent 60%);}
+  .pack-inner{position:absolute;inset:0;padding:48px;display:flex;flex-direction:column;justify-content:space-between;color:#fff;z-index:2;}
+  .pack-eyebrow{font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.6);}
+  .pack-line{font-family:'Roboto';font-weight:400;font-size:30px;line-height:1.1;letter-spacing:-.01em;}
+  .pack-line em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:500;}
+  .pack-bottom{display:flex;justify-content:space-between;align-items:flex-end;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.55);}
+
+  /* ----- Inspiration grid ----- */
+  .inspo{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+  .inspo .card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);padding:32px;border-radius:4px;min-height:240px;display:flex;flex-direction:column;justify-content:space-between;}
+  .inspo .brand{font-family:'Roboto';font-weight:500;font-size:18px;letter-spacing:-.005em;color:#fff;}
+  .inspo .why{font-size:13px;line-height:1.55;color:rgba(255,255,255,.65);}
+  .inspo .tag{font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--e-cyan);}
+
+  /* ----- Type & Color ----- */
+  .typecolor{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:start;}
+  .typespec{padding:48px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.08);border-radius:4px;}
+  .typespec .specimen{font-family:'Roboto';font-weight:400;font-size:84px;line-height:.95;letter-spacing:-.025em;margin:0 0 24px;}
+  .typespec .specimen em{font-style:normal;font-weight:500;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .typespec .specimen-sub{font-family:'Roboto';font-weight:400;font-size:20px;color:rgba(255,255,255,.7);margin:0 0 32px;line-height:1.4;}
+  .typespec .specrow{display:flex;justify-content:space-between;padding:14px 0;border-top:1px solid rgba(255,255,255,.06);font-size:13px;}
+  .typespec .specrow .l{color:rgba(255,255,255,.5);letter-spacing:.2em;text-transform:uppercase;font-size:10px;}
+  .typespec .specrow .v{color:#fff;}
+  .colorgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+  .swatch{aspect-ratio:1/1;border-radius:4px;display:flex;flex-direction:column;justify-content:flex-end;padding:14px;font-family:'Quicksand';font-weight:500;font-size:11px;letter-spacing:.1em;}
+  .swatch .name{display:block;font-size:10px;letter-spacing:.22em;text-transform:uppercase;}
+  .swatch .hex{display:block;margin-top:3px;opacity:.85;font-size:10px;}
+  .sw-gradient{background:var(--grad);color:#0a1422;grid-column:span 3;aspect-ratio:6/1;}
+  .sw-ecyan{background:var(--e-cyan);color:#0a1422;}
+  .sw-neon{background:var(--neon-green);color:#0a1422;}
+  .sw-green{background:var(--skylo-green);color:#fff;}
+  .sw-navy{background:var(--navy);color:#fff;}
+  .sw-ocean{background:var(--deep-ocean);color:#fff;}
+  .sw-rich{background:var(--rich-black);color:#fff;border:1px solid rgba(255,255,255,.08);}
+
+  /* ----- HERO KEY ART ----- */
+  .keyart{position:relative;height:90vh;min-height:680px;display:flex;align-items:flex-end;overflow:hidden;margin:40px 0 120px;}
+  .keyart .bg{position:absolute;inset:0;background-image:url('assets/hiker_sunset.jpg');background-size:cover;background-position:center 60%;}
+  .keyart .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,14,28,.0) 0%, rgba(8,14,28,.15) 40%, rgba(8,14,28,.92) 100%);}
+  .keyart .satellite{position:absolute;top:18%;right:14%;z-index:2;}
+  .keyart .sat-dot{width:14px;height:14px;border-radius:50%;background:#fff;box-shadow:0 0 24px 6px rgba(25,243,255,.65), 0 0 60px 14px rgba(0,255,0,.35);}
+  .keyart .sat-trail{position:absolute;top:50%;right:14px;height:2px;width:280px;background:linear-gradient(90deg, rgba(25,243,255,0), rgba(25,243,255,.65) 40%, rgba(0,255,0,.85));transform:translate(0,-50%) rotate(-12deg);transform-origin:right center;border-radius:2px;filter:blur(.3px);}
+  .keyart .content{position:relative;z-index:3;width:100%;padding:0 48px 80px;}
+  .keyart .content .inner{max-width:1280px;margin:0 auto;}
+  .keyart .content .tagline{font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--e-cyan);margin-bottom:24px;}
+  .keyart .content h2{font-family:'Roboto';font-weight:400;font-size:clamp(56px,9.4vw,156px);line-height:.98;letter-spacing:-.02em;margin:0 0 28px;max-width:1100px;}
+  .keyart .content h2 .grad{font-weight:500;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .keyart .content .bottom{display:flex;justify-content:space-between;align-items:flex-end;padding-top:28px;border-top:1px solid rgba(255,255,255,.18);}
+  .keyart .content .bottom .copy{max-width:520px;color:rgba(255,255,255,.78);font-size:15px;line-height:1.55;}
+  .keyart .content .bottom .logo-lockup-final{display:flex;align-items:center;gap:14px;}
+
+  /* ----- CTA ----- */
+  .cta{padding:180px 0 200px;text-align:center;}
+  .cta h2{font-family:'Roboto';font-weight:400;font-size:clamp(36px,5vw,72px);line-height:1.05;margin:0 0 24px;letter-spacing:-.02em;}
+  .cta h2 em{font-style:normal;font-weight:500;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .cta .sub{max-width:620px;margin:0 auto 48px;color:rgba(255,255,255,.66);font-size:16px;line-height:1.55;}
+  .cta .actions{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
+  .btn{padding:18px 36px;font-family:'Roboto';font-weight:500;font-size:12px;letter-spacing:.28em;text-transform:uppercase;border-radius:48px;background:var(--grad);color:#0a1422;border:0;cursor:pointer;}
+  .btn.outline{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3);}
+
+  /* ----- Scope picker ----- */
+  .scope-section{padding:200px 0 220px;}
+  .scope-section .lead{max-width:660px;color:rgba(255,255,255,.7);font-size:16px;line-height:1.6;margin:-72px 0 80px;}
+  .calc-layout{display:grid;grid-template-columns:1fr 380px;gap:48px;align-items:start;}
+  #calcList{border:1px solid rgba(255,255,255,.08);border-radius:8px;overflow:hidden;background:rgba(255,255,255,.02);}
+  .calc-divider{padding:18px 24px;font-size:10px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--e-cyan);background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.08);}
+  .calc-row{display:flex;align-items:center;padding:20px 24px;cursor:pointer;transition:background .15s,border-color .15s;border-bottom:1px solid rgba(255,255,255,.06);gap:18px;}
+  .calc-row:last-child{border-bottom:0;}
+  .calc-row:hover{background:rgba(255,255,255,.035);}
+  .calc-row.selected{background:linear-gradient(90deg,rgba(0,193,30,.06),transparent 60%);}
+  .calc-check{width:22px;height:22px;border-radius:6px;border:1.5px solid rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s;font-size:13px;color:transparent;font-weight:700;}
+  .calc-row.selected .calc-check{background:var(--grad);border-color:transparent;color:#0a1422;}
+  .calc-info{flex:1;min-width:0;}
+  .calc-name{font-family:'Roboto';font-weight:500;font-size:15px;color:#fff;display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap;}
+  .calc-desc{font-size:13px;color:rgba(255,255,255,.55);margin-top:4px;line-height:1.55;}
+  .calc-star{color:var(--e-cyan);font-size:14px;margin-right:2px;}
+  .calc-rec{display:inline-block;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:3px 10px;border-radius:30px;background:rgba(25,243,255,.12);color:var(--e-cyan);margin-left:6px;}
+  .calc-credits{width:110px;text-align:right;font-size:12px;letter-spacing:.06em;color:rgba(255,255,255,.55);flex-shrink:0;font-variant-numeric:tabular-nums;}
+  .calc-cost{width:150px;text-align:right;font-family:'Quicksand';font-size:14px;font-weight:600;color:#fff;flex-shrink:0;font-variant-numeric:tabular-nums;}
+  .calc-footer{position:sticky;top:88px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:32px;}
+  .calc-footer-left{color:rgba(255,255,255,.5);font-size:13px;margin-bottom:24px;line-height:1.55;}
+  .calc-footer-left span{color:#fff;font-weight:500;}
+  .calc-total-credits{font-family:'Quicksand';font-size:14px;font-weight:600;color:var(--e-cyan);margin-bottom:6px;letter-spacing:.04em;}
+  .calc-total-price{font-family:'Quicksand';font-size:34px;font-weight:700;color:#fff;letter-spacing:-.01em;line-height:1.1;}
+  .calc-empty{font-size:13px;color:rgba(255,255,255,.35);font-style:italic;font-family:'Roboto';font-weight:300;}
+  .calc-fine{font-size:12px;color:rgba(255,255,255,.4);margin-top:24px;line-height:1.6;max-width:780px;}
+
+  /* ----- Footer ----- */
+  footer{padding:48px;border-top:1px solid rgba(255,255,255,.06);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.4);display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+
+  /* ----- Reveal on scroll ----- */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease, transform .8s ease;}
+  .reveal.in{opacity:1;transform:none;}
+
+  /* ----- Hero subhead / kicker ----- */
+  .hero .kicker{margin:0 0 18px;font-family:'Roboto';font-weight:400;font-size:clamp(16px,1.7vw,22px);letter-spacing:.04em;color:#fff;max-width:680px;}
+  .hero .kicker em{font-style:normal;font-weight:500;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+
+  /* ----- One Team intro card ----- */
+  .one-team-row{padding:48px 0 0;}
+  .one-team-card{display:flex;align-items:center;justify-content:space-between;gap:48px;padding:36px 40px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg,rgba(255,255,255,.025),transparent);border-radius:6px;}
+  .one-team-card .ot-left{flex:1;min-width:0;}
+  .one-team-card .ot-label{font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--e-cyan);font-weight:600;margin-bottom:14px;}
+  .one-team-card .ot-body{color:rgba(255,255,255,.78);font-size:15px;line-height:1.55;max-width:780px;}
+  .one-team-card .ot-body strong{color:#fff;font-weight:500;}
+  .one-team-card .ot-right{display:flex;align-items:center;gap:18px;flex-shrink:0;}
+  .one-team-card .ot-mark{font-family:'Quicksand';font-weight:700;font-size:14px;letter-spacing:.04em;color:#fff;padding:14px 18px;border:1px solid rgba(255,255,255,.18);border-radius:4px;background:rgba(255,255,255,.02);}
+  .one-team-card .ot-x{font-family:'Roboto';font-weight:300;font-size:18px;color:rgba(255,255,255,.4);}
+
+  /* ----- Photography & Imagery principles ----- */
+  .photo-principles{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .photo-principles .pcard{padding:32px;border:1px solid rgba(255,255,255,.08);border-radius:4px;background:rgba(255,255,255,.02);display:flex;flex-direction:column;gap:14px;min-height:240px;}
+  .photo-principles .pcard .pnum{font-family:'Quicksand';font-weight:600;font-size:11px;letter-spacing:.32em;color:var(--e-cyan);}
+  .photo-principles .pcard h4{font-family:'Roboto';font-weight:500;font-size:22px;line-height:1.15;margin:0;color:#fff;}
+  .photo-principles .pcard p{font-size:14px;line-height:1.6;color:rgba(255,255,255,.65);margin:0;}
+  .photo-strip{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;margin-top:48px;}
+  .photo-strip .ptile2{position:relative;overflow:hidden;background:#0c1320;border-radius:4px;}
+  .photo-strip .ptile2 img{width:100%;height:100%;object-fit:cover;transition:transform 1s ease;}
+  .photo-strip .ptile2:hover img{transform:scale(1.04);}
+  .photo-strip .ptile2 .lab{position:absolute;left:18px;bottom:14px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.85);font-weight:500;text-shadow:0 1px 4px rgba(0,0,0,.7);}
+  .photo-strip .ptile2.s1{grid-column:span 5;aspect-ratio:5/6;}
+  .photo-strip .ptile2.s2{grid-column:span 7;aspect-ratio:16/11;}
+  .photo-strip .ptile2.s3{grid-column:span 4;aspect-ratio:4/4;}
+  .photo-strip .ptile2.s4{grid-column:span 4;aspect-ratio:4/4;}
+  .photo-strip .ptile2.s5{grid-column:span 4;aspect-ratio:4/4;}
+
+  /* ----- Drive scene background for context section ----- */
+  .context .item .frame.scene.s-drive{background-image:url('assets/daily/car_phone_holder.jpg');background-position:center 50%;}
+  .context .item .frame.scene.s-pickup{background-image:url('assets/people/vanlife_phone.jpg');background-position:center 50%;}
+  .context .item .frame.scene.s-ops{background-image:url('assets/daily/utility_bucket.jpg');background-position:center 50%;}
+
+  /* ----- Responsive ----- */
+  @media (max-width: 920px){
+    .wrap{padding:0 28px;}
+    .topbar{padding:18px 28px;}
+    .premise{grid-template-columns:1fr;gap:20px;}
+    .premise .col{padding:32px;}
+    .mosaic{grid-template-columns:repeat(6,1fr);}
+    .tile.t-a{grid-column:span 6;}
+    .tile.t-b{grid-column:span 6;}
+    .tile.t-c, .tile.t-d, .tile.t-e{grid-column:span 3;}
+    .tile.t-f, .tile.t-g, .tile.t-h, .tile.t-i, .tile.t-j{grid-column:span 6;}
+    .people-grid{grid-template-columns:repeat(6,1fr);}
+    .ptile.p-big, .ptile.p-small, .ptile.p-third{grid-column:span 6;}
+    .device-phone{width:42%;}
+    .device-laptop{width:80%;}
+    .swag-frame .swag-grid{grid-template-columns:1fr 1fr;}
+    .one-team-card{flex-direction:column;align-items:flex-start;gap:24px;padding:28px;}
+    .photo-principles{grid-template-columns:1fr;}
+    .photo-strip{grid-template-columns:repeat(6,1fr);}
+    .photo-strip .ptile2.s1, .photo-strip .ptile2.s2{grid-column:span 6;}
+    .photo-strip .ptile2.s3, .photo-strip .ptile2.s4, .photo-strip .ptile2.s5{grid-column:span 3;}
+    .calc-layout{grid-template-columns:1fr;}
+    .calc-row{flex-wrap:wrap;}
+    .calc-credits, .calc-cost{width:auto;text-align:left;}
+    .calc-cost{width:100%;font-size:16px;}
+    .calc-footer{position:static;}
+    .scope-section .lead{margin-top:0;}
+    .context{grid-template-columns:1fr;}
+    .inspo{grid-template-columns:1fr 1fr;}
+    .typecolor{grid-template-columns:1fr;}
+    .typespec .specimen{font-size:52px;}
+    .keyart{height:auto;min-height:560px;}
+    .keyart .content{padding:0 28px 60px;}
+    .keyart .content .bottom{flex-direction:column;align-items:flex-start;gap:24px;}
+    section{padding:120px 0;}
+    .section-head{margin-bottom:64px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============== TOP BAR ============== -->
+<div class="topbar">
+  <div class="logo-lockup">
+    <img src="assets/skylo_logo_white.png" alt="Skylo" class="logo-img" />
+  </div>
+  <div class="nav-meta">Brand Vision · Consumer Direction · v1</div>
+</div>
+
+<!-- ============== HERO ============== -->
+<section class="hero" id="hero">
+  <div class="bg"></div>
+  <div class="hero-content reveal">
+    <div class="eyebrow">A Brand Vision · An Evolution of Skylo</div>
+    <h1 class="display">When Coverage Stops.<span class="line2 grad-text">Life Doesn't.</span></h1>
+    <p class="kicker">Powered by the <em>Standardized Sky</em> — the technical layer behind everyday connectivity.</p>
+    <p class="deck">Skylo is the invisible signal between the device in your hand and the satellites above. This is the case for growing what we've built for industry and defense into a brand that everyone — drivers, parents, operators, adventurers — can feel in their pocket.</p>
+  </div>
+  <div class="scroll-cue">Scroll</div>
+</section>
+
+<!-- ============== 01 · PREMISE ============== -->
+<section class="wrap">
+  <div class="section-head reveal">
+    <h2>An evolution,<br>not a replacement.</h2>
+    <div class="num">01 · Premise</div>
+  </div>
+  <div class="premise reveal">
+    <div class="col today">
+      <div class="label">Skylo Today</div>
+      <h3>The invisible network behind industry &amp; defense.</h3>
+      <p>Direct-to-device satellite connectivity for IoT, logistics, fleet, agriculture, and defense partners. A B2B platform with deep technical credibility — the only NB-IoT-NTN service at global scale.</p>
+    </div>
+    <div class="col future">
+      <div class="label">Skylo Tomorrow</div>
+      <h3>The same Standardized Sky — now felt by everyone.</h3>
+      <p>An evolution of the brand, not a reinvention. The same satellite layer, now in the pocket of the driver in the city, the parent picking up the kids, the operator in the field, and the hiker past the last tower. <em>Coverage that holds, everywhere life happens.</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============== 02 · THE WORLD ============== -->
+<section class="wrap">
+  <div class="section-head reveal">
+    <h2>The world we're building for.</h2>
+    <div class="num">02 · The People</div>
+  </div>
+  <div class="mosaic reveal">
+    <div class="tile t-a"><img src="assets/daily/city_driving.jpg" alt=""><span class="caption">The freeway commute</span></div>
+    <div class="tile t-b"><img src="assets/daily/mom_and_kid.jpg" alt=""><span class="caption">School run</span></div>
+    <div class="tile t-c"><img src="assets/daily/city_evening.jpg" alt=""><span class="caption">Evening in the city</span></div>
+    <div class="tile t-d"><img src="assets/daily/rescue_chopper.jpg" alt=""><span class="caption">Off-shore rescue</span></div>
+    <div class="tile t-e"><img src="assets/people/bike_phone.jpg" alt=""><span class="caption">After-work ride</span></div>
+    <div class="tile t-f"><img src="assets/daily/phone_call_outdoor.jpg" alt=""><span class="caption">Saturday at the field</span></div>
+    <div class="tile t-g"><img src="assets/people/phone_at_summit.jpg" alt=""><span class="caption">Around the fire</span></div>
+    <div class="tile t-h"><img src="assets/snowy_peaks.jpg" alt=""><span class="caption">Past the last bar</span></div>
+    <div class="tile t-i"><img src="assets/tent_lights.jpg" alt=""><span class="caption">Camp tonight</span></div>
+    <div class="tile t-j"><img src="assets/sailing.jpg" alt=""><span class="caption">Out on the water</span></div>
+  </div>
+</section>
+
+<!-- ============== 03 · PHOTOGRAPHY & IMAGERY ============== -->
+<section class="wrap">
+  <div class="section-head reveal">
+    <h2>The way we shoot.</h2>
+    <div class="num">03 · Photography &amp; Imagery</div>
+  </div>
+  <div class="photo-principles reveal">
+    <div class="pcard">
+      <div class="pnum">01 · Principle</div>
+      <h4>Human first.</h4>
+      <p>Faces, hands, eyes. Real people in real moments — never staged, never stock-feeling. The device is a supporting role; the person is the story.</p>
+    </div>
+    <div class="pcard">
+      <div class="pnum">02 · Principle</div>
+      <h4>Dramatic light.</h4>
+      <p>Golden hour at the trailhead. Headlights at dusk on the freeway. Console glow in the dashboard. We treat light like a co-star — cinematic, specific, owned.</p>
+    </div>
+    <div class="pcard">
+      <div class="pnum">03 · Principle</div>
+      <h4>Connected moments.</h4>
+      <p>The phone in the car cradle. The message sent from the trail. The check-in from the field. Every frame answers: where does life get easier because signal held?</p>
+    </div>
+  </div>
+  <div class="photo-strip reveal">
+    <div class="ptile2 s1"><img src="assets/people/woman_phone_view.jpg" alt=""><span class="lab">Human · Faces &amp; hands</span></div>
+    <div class="ptile2 s2"><img src="assets/aurora_forest.jpg" alt=""><span class="lab">Light · Dramatic skies</span></div>
+    <div class="ptile2 s3"><img src="assets/daily/chopper_mountain.jpg" alt=""><span class="lab">Defense · Aerial ops</span></div>
+    <div class="ptile2 s4"><img src="assets/hiker_backpack.jpg" alt=""><span class="lab">Adventure · Trailhead</span></div>
+    <div class="ptile2 s5"><img src="assets/daily/family_school.jpg" alt=""><span class="lab">Family · Hands &amp; play</span></div>
+  </div>
+</section>
+
+<!-- ============== 04 · IN THEIR HANDS ============== -->
+<section class="wrap">
+  <div class="section-head reveal">
+    <h2>The people who feel this every day.</h2>
+    <div class="num">04 · In Their Hands</div>
+  </div>
+  <div class="people-grid reveal">
+    <div class="ptile p-big">
+      <img src="assets/daily/driving_road.jpg" alt="">
+      <div class="ov"></div>
+      <div class="meta">
+        <div class="what">The Parent</div>
+        <div class="who">"School pickup. Signal stayed up."</div>
+      </div>
+    </div>
+    <div class="ptile p-small">
+      <img src="assets/daily/man_driving.jpg" alt="">
+      <div class="ov"></div>
+      <div class="meta">
+        <div class="what">The Commuter</div>
+        <div class="who">No dropped call between exits.</div>
+      </div>
+    </div>
+    <div class="ptile p-third">
+      <img src="assets/daily/ops_team.jpg" alt="">
+      <div class="ov"></div>
+      <div class="meta">
+        <div class="what">The Operator</div>
+        <div class="who">Coordinated. Always on net.</div>
+      </div>
+    </div>
+    <div class="ptile p-third">
+      <img src="assets/daily/worker_phone.jpg" alt="">
+      <div class="ov"></div>
+      <div class="meta">
+        <div class="what">The Pro</div>
+        <div class="who">Site survey, every site.</div>
+      </div>
+    </div>
+    <div class="ptile p-third">
+      <img src="assets/people/ski_phone_check.jpg" alt="">
+      <div class="ov"></div>
+      <div class="meta">
+        <div class="what">The Adventurer</div>
+        <div class="who">Snow, signal, sent.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== 05 · VISION IN CONTEXT ============== -->
+<section class="wrap">
+  <div class="section-head reveal">
+    <h2>The line, in the world.</h2>
+    <div class="num">05 · Vision in Context</div>
+  </div>
+  <div class="context reveal">
+
+    <!-- Phone splash in urban driving environment -->
+    <div class="item">
+      <div class="frame scene s-drive">
+        <div class="device-phone">
+          <div class="pscreen splash">
+            <div class="topbit">Skylo · Connected</div>
+            <div class="midbit">When Coverage Stops.<br><em>Life Doesn't.</em></div>
+            <div class="bottombit"><img src="assets/skylo_logo_white.png" alt="Skylo" /></div>
+          </div>
+        </div>
+      </div>
+      <span class="label">App splash · The phone on the bridge</span>
+    </div>
+
+    <!-- App home — everyday school pickup -->
+    <div class="item">
+      <div class="frame scene s-pickup">
+        <div class="device-phone straight">
+          <div class="pscreen app">
+            <div class="status"><span>3:14</span><span>Skylo</span></div>
+            <div class="greet">Hi Sam,<br>signal's holding.</div>
+            <div class="sub">School pickup at 3:25 · No dropped calls today.</div>
+            <div class="card">
+              <div><span class="gdot"></span><span class="l">Network</span></div>
+              <div class="v">Standardized Sky</div>
+            </div>
+            <div class="card">
+              <div><span class="l">Last call</span></div>
+              <div class="v">Clear</div>
+            </div>
+            <div class="pill">Message Home</div>
+          </div>
+        </div>
+      </div>
+      <span class="label">Consumer app · Everyday check-in, parent on the school run</span>
+    </div>
+
+    <!-- Laptop dashboard — defense / fleet operations -->
+    <div class="item" style="grid-column:span 2;">
+      <div class="frame scene s-ops" style="aspect-ratio:21/9;">
+        <div class="device-laptop">
+          <div class="lid">
+            <div class="lscreen">
+              <div class="ltop"><img src="assets/skylo_logo_white.png" alt="Skylo" /><span>Skylo Console · Pro</span></div>
+              <h6>Coverage anywhere<br>you operate.</h6>
+              <div class="lsub">Live status, satellites overhead, messages out. Built for fleet, field operations, and defense — wherever the network has to hold.</div>
+              <div class="stat-row">
+                <div class="stat"><div class="sl">Satellites Overhead</div><div class="sv">9 live</div></div>
+                <div class="stat"><div class="sl">Time to Connect</div><div class="sv">6 sec</div></div>
+                <div class="stat"><div class="sl">Coverage</div><div class="sv">Pole-to-Pole</div></div>
+              </div>
+              <div class="grad-bar"></div>
+            </div>
+          </div>
+          <div class="base"></div>
+        </div>
+      </div>
+      <span class="label">Pro console · Fleet, field operations, defense</span>
+    </div>
+
+    <!-- OOH 1 -->
+    <div class="item">
+      <div class="frame billboard b1">
+        <div class="copy">
+          <h4>When Coverage Stops.<br><em>Life Doesn't.</em></h4>
+          <div class="micrologo">
+            <img src="assets/skylo_logo_white.png" alt="Skylo" class="micrologo-img" />
+          </div>
+        </div>
+      </div>
+      <span class="label">OOH · Highway billboard, transit, airport</span>
+    </div>
+
+    <!-- OOH 2 -->
+    <div class="item">
+      <div class="frame billboard b2">
+        <div class="copy">
+          <h4>Built for the freeway,<br><em>the field, and the trail.</em></h4>
+          <div class="micrologo">
+            <img src="assets/skylo_logo_white.png" alt="Skylo" class="micrologo-img" />
+          </div>
+        </div>
+      </div>
+      <span class="label">Print · Magazine spread, in-flight, lifestyle</span>
+    </div>
+
+    <!-- Event swag -->
+    <div class="item">
+      <div class="swag-frame">
+        <div class="swag-header">
+          <div class="lbl">Event Swag Kit</div>
+          <div class="tagline">Trade shows.<br>Activations.<br><em>Made for everywhere.</em></div>
+        </div>
+        <div class="swag-grid">
+
+          <!-- Lanyard -->
+          <div class="swag-item lanyard">
+            <div class="strap"><span>skylo</span><span>skylo</span><span>skylo</span></div>
+            <div class="clip"></div>
+            <div class="badge">
+              <img src="assets/skylo_logo_white.png" alt="">
+              <div class="name">Jordan H.</div>
+              <div class="role">CES · 2026</div>
+            </div>
+          </div>
+
+          <!-- Sticker pack -->
+          <div class="swag-item stickers">
+            <div class="sk sk1"><img src="assets/skylo_logo_white.png" alt=""></div>
+            <div class="sk sk2"><div class="qq">When Coverage<br>Stops.<br>Life Doesn't.</div></div>
+            <div class="sk sk3"><img src="assets/skylo_logo_white.png" alt=""></div>
+          </div>
+
+          <!-- Tote bag -->
+          <div class="swag-item tote">
+            <div class="totemark">
+              <img src="assets/skylo_logo_white.png" alt="">
+            </div>
+            <div class="totetag">Made for Everywhere</div>
+          </div>
+
+          <!-- Water bottle -->
+          <div class="swag-item bottle">
+            <div class="bcap"></div>
+            <div class="bbody"></div>
+            <div class="blabel">
+              <img src="assets/skylo_logo_white.png" alt="">
+            </div>
+          </div>
+
+          <!-- Cap -->
+          <div class="swag-item cap">
+            <div class="crown"><img src="assets/skylo_logo_white.png" alt=""></div>
+            <div class="band"></div>
+            <div class="brim"></div>
+          </div>
+
+          <!-- Pin / Patch -->
+          <div class="swag-item stickers" style="aspect-ratio:1/0.9;">
+            <div class="sk sk2" style="left:18%;right:auto;top:18%;width:64%;"><div class="qq">SKYLO<br>EXPLORER</div></div>
+          </div>
+
+        </div>
+      </div>
+      <span class="label">Event swag · CES, trade shows, REI activations, expedition kits</span>
+    </div>
+
+    <!-- Social hero -->
+    <div class="item">
+      <div class="frame billboard b1" style="aspect-ratio:1/1;background-image:linear-gradient(180deg,rgba(8,14,28,.4),rgba(8,14,28,.9)),url('assets/people/two_friends_outdoor.jpg');background-position:center 30%;">
+        <div class="copy">
+          <h4 style="font-size:clamp(22px,2.8vw,38px);">Stay reachable.<br><em>Stay yourself.</em></h4>
+          <div class="micrologo">
+            <img src="assets/skylo_logo_white.png" alt="Skylo" class="micrologo-img" />
+          </div>
+        </div>
+      </div>
+      <span class="label">Social · Instagram, TikTok hero post</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============== 06 · TYPE & COLOR ============== -->
+<section class="wrap">
+  <div class="section-head reveal">
+    <h2>How the brand looks<br>as it evolves.</h2>
+    <div class="num">06 · System</div>
+  </div>
+  <div class="typecolor reveal">
+    <div class="typespec">
+      <div class="specimen">Quiet,<br>but <em>everywhere.</em></div>
+      <div class="specimen-sub">Roboto Light at scale. Sentence case. Air around every line. We let the imagery roar; the type listens.</div>
+      <div class="specrow"><span class="l">Display</span><span class="v">Roboto Thin / Light · -2% tracking</span></div>
+      <div class="specrow"><span class="l">Body</span><span class="v">Roboto Light · 1.55 leading</span></div>
+      <div class="specrow"><span class="l">Mark / Brand</span><span class="v">Quicksand SemiBold (logo only)</span></div>
+      <div class="specrow"><span class="l">Accent</span><span class="v">Gradient on the verb that matters</span></div>
+    </div>
+    <div class="colorgrid">
+      <div class="swatch sw-gradient"><span class="name">Skylo Brand Gradient</span><span class="hex">#19F3FF → #00FF00</span></div>
+      <div class="swatch sw-ecyan"><span class="name">Electric Cyan</span><span class="hex">#19F3FF</span></div>
+      <div class="swatch sw-neon"><span class="name">Neon Green</span><span class="hex">#00FF00</span></div>
+      <div class="swatch sw-green"><span class="name">Skylo Green</span><span class="hex">#00C11E</span></div>
+      <div class="swatch sw-navy"><span class="name">Navy</span><span class="hex">#101D35</span></div>
+      <div class="swatch sw-ocean"><span class="name">Deep Ocean</span><span class="hex">#173B42</span></div>
+      <div class="swatch sw-rich"><span class="name">Rich Black</span><span class="hex">#080E1C</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== 07 · BRANDS TO LEARN FROM ============== -->
+<section class="wrap">
+  <div class="section-head reveal">
+    <h2>Brands<br>to learn from.</h2>
+    <div class="num">07 · Benchmarks</div>
+  </div>
+  <div class="inspo reveal">
+    <div class="card">
+      <div>
+        <div class="tag">Adventure tech</div>
+        <div class="brand" style="margin-top:8px;">Garmin inReach</div>
+      </div>
+      <div class="why">The category that proved off-grid connectivity sells. We learn the outcome they promise — and deliver it on hardware people already carry.</div>
+    </div>
+    <div class="card">
+      <div>
+        <div class="tag">Emotional storytelling</div>
+        <div class="brand" style="margin-top:8px;">Patagonia</div>
+      </div>
+      <div class="why">Photography-first, restraint with type, brand as worldview. We learn their pacing and human-centered framing.</div>
+    </div>
+    <div class="card">
+      <div>
+        <div class="tag">Premium technical</div>
+        <div class="brand" style="margin-top:8px;">Arc'teryx</div>
+      </div>
+      <div class="why">Monolithic visual identity, premium materials, "the serious choice." We learn how technical credibility becomes brand desire.</div>
+    </div>
+    <div class="card">
+      <div>
+        <div class="tag">Tech-as-lifestyle</div>
+        <div class="brand" style="margin-top:8px;">Apple · AirTag launch</div>
+      </div>
+      <div class="why">Master of "invisible thing, beautiful film." We learn the reveal language — black backgrounds, small product, big emotion.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== 08 · HERO KEY ART ============== -->
+<section class="wrap">
+  <div class="section-head reveal">
+    <h2>The campaign image.</h2>
+    <div class="num">08 · Hero Key Art</div>
+  </div>
+</section>
+
+<div class="keyart reveal">
+  <div class="bg"></div>
+  <div class="satellite">
+    <div class="sat-trail"></div>
+    <div class="sat-dot"></div>
+  </div>
+  <div class="content">
+    <div class="inner">
+      <div class="tagline">A Skylo Campaign · Hero Frame</div>
+      <h2>When Coverage Stops.<br><span class="grad">Life Doesn't.</span></h2>
+      <div class="bottom">
+        <div class="copy">A connectivity layer for everywhere life happens — the call from the freeway, the pickup at school, the message from the field, the check-in from the trail. Powered by the Standardized Sky.</div>
+        <div class="logo-lockup-final">
+          <img src="assets/skylo_logo_white.png" alt="Skylo" class="keyart-logo-img" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============== CTA ============== -->
+<section class="cta wrap">
+  <div class="reveal">
+    <h2>Greenlight the evolution.<br>Let's build the <em>real</em> brand world.</h2>
+    <div class="sub">This document is the strategic case. The next step is locking the brand vibe guide, commissioning the photography, and turning the system into a living motion + social engine. The Standardized Sky deserves a brand that meets it.</div>
+    <div class="actions">
+      <button class="btn">Approve Direction</button>
+      <button class="btn outline">Schedule Brand Briefing</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============== 09 · PICK WHAT YOU NEED (SCOPE) ============== -->
+<section class="wrap scope-section" id="scope">
+  <div class="section-head reveal">
+    <h2>Pick what you need.</h2>
+    <div class="num">09 · Build Your Scope</div>
+  </div>
+  <p class="lead reveal">Five disciplines, scoped tight. Click any project to add it to your scope — start with what's most urgent, add more as the partnership grows.</p>
+
+  <div class="calc-layout reveal">
+    <div id="calcList">
+
+      <div class="calc-divider">Recommended starting work</div>
+
+      <div class="calc-row selected" data-credits-min="150" data-credits-max="212" onclick="toggleCalc(this)">
+        <div class="calc-check">✓</div>
+        <div class="calc-info"><span class="calc-name"><span class="calc-star">★</span>Brand Guide<span class="calc-rec">Start here</span></span><div class="calc-desc">The definitive visual identity, photography direction, motion principles, and voice — the foundation everything else builds from.</div></div>
+        <div class="calc-credits">150 – 212 cr</div>
+        <div class="calc-cost">$18,750 – $26,500</div>
+      </div>
+
+      <div class="calc-row selected" data-credits-min="28" data-credits-max="40" onclick="toggleCalc(this)">
+        <div class="calc-check">✓</div>
+        <div class="calc-info"><span class="calc-name"><span class="calc-star">★</span>Photography Direction + Image Library<span class="calc-rec">Start here</span></span><div class="calc-desc">Curated library, art direction, and 75+ assets across the five core categories — everyday, defense, adventure, product, and lifestyle.</div></div>
+        <div class="calc-credits">28 – 40 cr</div>
+        <div class="calc-cost">$3,500 – $5,000</div>
+      </div>
+
+      <div class="calc-row selected" data-credits-min="240" data-credits-max="480" onclick="toggleCalc(this)">
+        <div class="calc-check">✓</div>
+        <div class="calc-info"><span class="calc-name"><span class="calc-star">★</span>Custom Photography Production<span class="calc-rec">Start here</span></span><div class="calc-desc">Full bespoke shoot — concept, casting, location scouting, crew, art direction. 2–4 day production capturing real moments across everyday, defense, and adventure environments. Delivers a proprietary image library Skylo owns end-to-end.</div></div>
+        <div class="calc-credits">240 – 480 cr</div>
+        <div class="calc-cost">$30,000 – $60,000</div>
+      </div>
+
+      <div class="calc-row selected" data-credits-min="50" data-credits-max="80" onclick="toggleCalc(this)">
+        <div class="calc-check">✓</div>
+        <div class="calc-info"><span class="calc-name"><span class="calc-star">★</span>Motion Graphics System<span class="calc-rec">Start here</span></span><div class="calc-desc">Animated brand elements, motion principles, transitions, and bumpers — the kinetic layer of the brand, ready for every channel.</div></div>
+        <div class="calc-credits">50 – 80 cr</div>
+        <div class="calc-cost">$6,250 – $10,000</div>
+      </div>
+
+      <div class="calc-row selected" data-credits-min="20" data-credits-max="32" onclick="toggleCalc(this)">
+        <div class="calc-check">✓</div>
+        <div class="calc-info"><span class="calc-name"><span class="calc-star">★</span>Social Asset Library<span class="calc-rec">Start here</span></span><div class="calc-desc">Production-ready social templates and launch formats across Instagram, LinkedIn, X, and TikTok — sized, branded, and editable.</div></div>
+        <div class="calc-credits">20 – 32 cr</div>
+        <div class="calc-cost">$2,500 – $4,000</div>
+      </div>
+
+      <div class="calc-row selected" data-credits-min="60" data-credits-max="100" onclick="toggleCalc(this)">
+        <div class="calc-check">✓</div>
+        <div class="calc-info"><span class="calc-name"><span class="calc-star">★</span>Video Templates<span class="calc-rec">Start here</span></span><div class="calc-desc">A repeatable system of After Effects + Premiere templates — hero, explainer, social cut-downs, product demos — so video doesn't live or die with one production.</div></div>
+        <div class="calc-credits">60 – 100 cr</div>
+        <div class="calc-cost">$7,500 – $12,500</div>
+      </div>
+
+    </div>
+
+    <div class="calc-footer" id="calcFooter">
+      <div class="calc-footer-left"><span id="calcCount">0</span> projects selected<br>All at <span>$125 / credit</span></div>
+      <div class="calc-footer-right">
+        <div class="calc-total-credits" id="calcCredits"><span class="calc-empty">Click a project to start</span></div>
+        <div class="calc-total-price" id="calcPrice"></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="calc-fine">All projects scoped in SketchDeck credits at $125/credit. Estimates confirmed at time of scoping. Custom photography production scoped per shoot scale; localization quoted separately.</p>
+</section>
+
+<footer>
+  <div>Skylo · Brand Vision · v1 · Internal</div>
+  <div>Built for review · Reference imagery via Unsplash · Final campaign pending production</div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  }, {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Scope calculator
+  function toggleCalc(row){
+    row.classList.toggle('selected');
+    updateTotal();
+  }
+  function updateTotal(){
+    const rows = document.querySelectorAll('.calc-row.selected');
+    let minC = 0, maxC = 0, count = 0;
+    rows.forEach(r => {
+      minC += parseInt(r.dataset.creditsMin)||0;
+      maxC += parseInt(r.dataset.creditsMax)||0;
+      count++;
+    });
+    document.getElementById('calcCount').textContent = count;
+    const ce = document.getElementById('calcCredits');
+    const pe = document.getElementById('calcPrice');
+    if (!count) {
+      ce.innerHTML = '<span class="calc-empty">Click a project to start</span>';
+      pe.textContent = '';
+    } else if (minC === maxC) {
+      ce.textContent = minC + ' credits';
+      pe.textContent = '$' + (minC*125).toLocaleString();
+    } else {
+      ce.textContent = minC + ' – ' + maxC + ' credits';
+      pe.textContent = '$' + (minC*125).toLocaleString() + ' – $' + (maxC*125).toLocaleString();
+    }
+  }
+  document.addEventListener('DOMContentLoaded', updateTotal);
+</script>
+</body>
+</html>
