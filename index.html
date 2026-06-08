@@ -63,14 +63,18 @@
   .section-head .num{font-family:'Quicksand';font-weight:500;font-size:13px;letter-spacing:.32em;color:var(--e-cyan);white-space:nowrap;padding-top:14px;}
   .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);margin:0;}
 
-  /* ----- Premise section (today/tomorrow) ----- */
-  .premise{display:grid;grid-template-columns:1fr 1fr;gap:64px;padding-top:24px;}
-  .premise .col{padding:48px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg,rgba(255,255,255,.02),transparent);border-radius:4px;}
-  .premise .label{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:24px;}
-  .premise h3{font-family:'Roboto';font-weight:500;font-size:32px;margin:0 0 16px;line-height:1.2;}
-  .premise p{color:rgba(255,255,255,.7);line-height:1.6;font-size:15px;margin:0;}
-  .premise .col.future{border-color:rgba(0,255,0,.25);background:linear-gradient(180deg,rgba(0,193,30,.04),transparent);}
-  .premise .col.future h3{font-weight:600;}
+  /* ----- Premise section (unified vision) ----- */
+  .premise-vision{padding-top:24px;}
+  .vision-statement{padding:64px;border:1px solid rgba(0,255,0,.25);background:linear-gradient(180deg,rgba(0,193,30,.04),transparent);border-radius:4px;margin-bottom:32px;}
+  .vision-statement .label{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--e-cyan);margin-bottom:24px;font-weight:600;}
+  .vision-statement h3{font-family:'Roboto';font-weight:500;font-size:clamp(28px,3.4vw,44px);line-height:1.15;letter-spacing:-.01em;margin:0 0 24px;color:#fff;max-width:920px;}
+  .vision-statement h3 em{font-style:normal;font-weight:500;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .vision-statement p{color:rgba(255,255,255,.78);line-height:1.6;font-size:17px;margin:0;max-width:780px;}
+  .vision-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .vision-pillars .pillar{padding:28px 28px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02);border-radius:4px;}
+  .vision-pillars .pillar .label{font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--e-cyan);margin-bottom:14px;font-weight:600;}
+  .vision-pillars .pillar .title{font-family:'Roboto';font-weight:500;font-size:22px;line-height:1.15;color:#fff;margin-bottom:8px;}
+  .vision-pillars .pillar .sub{font-size:13px;color:rgba(255,255,255,.6);line-height:1.5;}
 
   /* ----- Photo mosaic ----- */
   .mosaic{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;}
@@ -376,6 +380,8 @@
     .topbar{padding:18px 28px;}
     .premise{grid-template-columns:1fr;gap:20px;}
     .premise .col{padding:32px;}
+    .vision-statement{padding:36px;}
+    .vision-pillars{grid-template-columns:1fr;}
     .mosaic{grid-template-columns:repeat(6,1fr);}
     .tile.t-a{grid-column:span 6;}
     .tile.t-b{grid-column:span 6;}
@@ -434,19 +440,31 @@
 <!-- ============== 01 · PREMISE ============== -->
 <section class="wrap">
   <div class="section-head reveal">
-    <h2>An evolution,<br>not a replacement.</h2>
-    <div class="num">01 · Premise</div>
+    <h2>One Sky.<br>Everywhere life happens.</h2>
+    <div class="num">01 · Vision</div>
   </div>
-  <div class="premise reveal">
-    <div class="col today">
-      <div class="label">Skylo Today</div>
-      <h3>The invisible network behind industry &amp; defense.</h3>
-      <p>Direct-to-device satellite connectivity for IoT, logistics, fleet, agriculture, and defense partners. A B2B platform with deep technical credibility — the only NB-IoT-NTN service at global scale.</p>
+  <div class="premise-vision reveal">
+    <div class="vision-statement">
+      <div class="label">The Vision</div>
+      <h3>Skylo is the <em>Standardized Sky</em> — already delivering direct-to-device coverage across consumer, IoT, automotive, and defense.</h3>
+      <p>This brand evolution is about making that fact felt — by everyone who carries a phone, drives a car, or relies on a network that has to hold. Same Sky. Sharper story.</p>
     </div>
-    <div class="col future">
-      <div class="label">Skylo Tomorrow</div>
-      <h3>The same Standardized Sky — now felt by everyone.</h3>
-      <p>An evolution of the brand, not a reinvention. The same satellite layer, now in the pocket of the driver in the city, the parent picking up the kids, the operator in the field, and the hiker past the last tower. <em>Coverage that holds, everywhere life happens.</em></p>
+    <div class="vision-pillars">
+      <div class="pillar">
+        <div class="label">Consumer</div>
+        <div class="title">In the pocket</div>
+        <div class="sub">The phone that doesn't drop the call, the parent who reaches home, the message that gets through.</div>
+      </div>
+      <div class="pillar">
+        <div class="label">IoT + Automotive</div>
+        <div class="title">At the edge</div>
+        <div class="sub">Fleet, logistics, asset tracking, and connected vehicles — the only NB-IoT-NTN service at global scale.</div>
+      </div>
+      <div class="pillar">
+        <div class="label">Defense</div>
+        <div class="title">In the field</div>
+        <div class="sub">Direct-to-device connectivity for partners who can't afford a network that doesn't hold.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -454,15 +472,15 @@
 <!-- ============== 02 · THE WORLD ============== -->
 <section class="wrap">
   <div class="section-head reveal">
-    <h2>The world we're building for.</h2>
-    <div class="num">02 · The People</div>
+    <h2>Photography by use case.</h2>
+    <div class="num">02 · The Moodboard</div>
   </div>
   <div class="mosaic reveal">
-    <div class="tile t-a"><img src="assets/daily/city_driving.jpg" alt=""><span class="caption">The freeway commute</span></div>
-    <div class="tile t-b"><img src="assets/daily/mom_and_kid.jpg" alt=""><span class="caption">School run</span></div>
+    <div class="tile t-a"><img src="assets/daily/highway_1.jpg" alt=""><span class="caption">The freeway commute</span></div>
+    <div class="tile t-b"><img src="assets/daily/car_seat_boy.jpg" alt=""><span class="caption">School run</span></div>
     <div class="tile t-c"><img src="assets/daily/city_evening.jpg" alt=""><span class="caption">Evening in the city</span></div>
     <div class="tile t-d"><img src="assets/daily/rescue_chopper.jpg" alt=""><span class="caption">Off-shore rescue</span></div>
-    <div class="tile t-e"><img src="assets/people/bike_phone.jpg" alt=""><span class="caption">After-work ride</span></div>
+    <div class="tile t-e"><img src="assets/daily/bike_commuter.jpg" alt=""><span class="caption">After-work ride</span></div>
     <div class="tile t-f"><img src="assets/daily/phone_call_outdoor.jpg" alt=""><span class="caption">Saturday at the field</span></div>
     <div class="tile t-g"><img src="assets/people/phone_at_summit.jpg" alt=""><span class="caption">Around the fire</span></div>
     <div class="tile t-h"><img src="assets/snowy_peaks.jpg" alt=""><span class="caption">Past the last bar</span></div>
